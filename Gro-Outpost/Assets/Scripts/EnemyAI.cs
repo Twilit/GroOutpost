@@ -63,7 +63,10 @@ public class EnemyAI : MonoBehaviour
         Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         Vector2 force = dir * speed * Time.fixedDeltaTime;
 
-        rb.AddForce(force);
+        //rb.MovePosition(rb.position + force);
+        rb.AddRelativeForce(force - rb.velocity);
+
+        //rb.velocity = new Vector2 (Mathf.Clamp(rb.velocity.x, -4f, 4f), Mathf.Clamp(rb.velocity.y, -4f, 4f));
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 
