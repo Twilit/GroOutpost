@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2423678886660151808}
   - component: {fileID: 2423678886660151823}
   - component: {fileID: 2423678886660151809}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnemySprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,8 +107,8 @@ GameObject:
   - component: {fileID: 2423678887818264333}
   - component: {fileID: 2423678887818264321}
   - component: {fileID: 2423678887818264334}
-  m_Layer: 0
-  m_Name: BasicEnemy
+  m_Layer: 9
+  m_Name: BasicEnemy[Prototype]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
