@@ -5,9 +5,10 @@ using UnityEngine;
 public class PlayerSwat : MonoBehaviour
 {
     public Transform swatter;
+    public PlayerMove playerMove;
     Animator swatAnim;
 
-    bool swatting = false;
+    public bool swatting = false;
 
     void Start()
     {
@@ -22,6 +23,11 @@ public class PlayerSwat : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        SetSwatterDir();
+    }
+
     void SwingSwatter()
     {
         swatting = true;
@@ -32,5 +38,33 @@ public class PlayerSwat : MonoBehaviour
     {
         swatting = false;
 
+    }
+
+    void SetSwatterDir()
+    {
+        if (playerMove.faceDir == PlayerMove.Dir.Up)
+        {
+            swatter.eulerAngles = new Vector3(0, 0, 180);
+        }
+        else if (playerMove.faceDir == PlayerMove.Dir.Down)
+        {
+            swatter.eulerAngles = new Vector3(0, 0, 0);
+        }
+        else if (playerMove.faceDir == PlayerMove.Dir.Left)
+        {
+            swatter.eulerAngles = new Vector3(0, 0, 270);
+        }
+        else if (playerMove.faceDir == PlayerMove.Dir.Right)
+        {
+            swatter.eulerAngles = new Vector3(0, 0, 90);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            collision.GetComponent<Rigidbody2D>().velocity = (collision.transform.position - swatter.position).normalized * 20;
+        }
     }
 }

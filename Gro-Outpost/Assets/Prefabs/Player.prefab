@@ -246,6 +246,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swatter: {fileID: 1695900357}
+  playerMove: {fileID: 4626260521410367099}
+  swatting: 0
 --- !u!1 &1695900356
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,6 +289,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4626260520220236768}
   - component: {fileID: 4626260520220236771}
+  - component: {fileID: 723884980339462176}
   m_Layer: 10
   m_Name: PlayerSprite
   m_TagString: Untagged
@@ -357,6 +360,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &723884980339462176
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4626260520220236770}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 234615f1c36f19c40ad51bea48fd2178, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4626260521410367103
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,6 +475,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38dd1243b9eca1444a581c65f5f57507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerAnim: {fileID: 723884980339462176}
+  playerSwat: {fileID: 2441314388191807639}
+  faceDir: 0
 --- !u!114 &879988355
 MonoBehaviour:
   m_ObjectHideFlags: 0

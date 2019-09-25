@@ -6,9 +6,11 @@ public class PlayerMove : MonoBehaviour
 {
     float runSpeed = 4f;
 
-    float x = 0f;
-    float y = 0f;
-    Vector3 dir;
+    public Animator playerAnim;
+    public PlayerSwat playerSwat;
+    public enum Dir { Up, Down, Left, Right };
+    [HideInInspector] public Dir faceDir;
+    Vector2 inputDir;
     Vector3 velocity;
 
     Rigidbody2D rb2D;
@@ -22,15 +24,44 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        x = Input.GetAxisRaw("Horizontal");
-        y = Input.GetAxisRaw("Vertical");
+        if (!playerSwat.swatting)
+        {
+            inputDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+        }
+        else
+        {
+            inputDir = Vector2.zero;
+        }
 
-        dir = new Vector3(x, y, 0);
-        velocity = dir.normalized * runSpeed;
+        velocity = inputDir * runSpeed;
     }
 
     void FixedUpdate()
     {
+        HandleFaceDir(inputDir);
         rb2D.MovePosition(rb2D.transform.position + collisionChecker.CheckForCollision(velocity * Time.fixedDeltaTime));
+    }
+
+    void HandleFaceDir(Vector2 inputDir)
+    {
+        playerAnim.SetFloat("X", inputDir.x);
+        playerAnim.SetFloat("Y", inputDir.y);
+
+        if (Mathf.Abs(inputDir.x) < 0.2f && inputDir.y > 0.8f)
+        {
+            faceDir = Dir.Up;
+        }
+        if (Mathf.Abs(inputDir.x) < 0.2f && inputDir.y < -0.8f)
+        {
+            faceDir = Dir.Down;
+        }
+        if (inputDir.x < -0.8f && Mathf.Abs(inputDir.y) < 0.2f)
+        {
+            faceDir = Dir.Left;
+        }
+        if (inputDir.x > 0.8f && Mathf.Abs(inputDir.y) < 0.2f)
+        {
+            faceDir = Dir.Right;
+        }
     }
 }
