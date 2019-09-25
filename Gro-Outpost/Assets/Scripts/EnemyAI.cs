@@ -53,6 +53,8 @@ public class EnemyAI : MonoBehaviour
         if (health <= 0)
         {
             dying = true;
+            rb.drag = 10f;
+            sprite.color = new Color(1f, 1f, 1f, 0.3f);
             Invoke("Death", 0.5f);
         }
     }
