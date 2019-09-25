@@ -8,12 +8,15 @@ public class EnemyAI : MonoBehaviour
     public Transform target;
     public float speed;
     public float nextWaypointDist = 1.2f;
+    public int health = 3;
 
     public SpriteRenderer sprite;
+    public GameObject deathEffect;
 
     Path path;
     int currentWaypoint = 0;
     bool reachedEndofPath = false;
+    bool dying = false;
 
     Seeker seeker;
     Rigidbody2D rb;
@@ -28,7 +31,7 @@ public class EnemyAI : MonoBehaviour
 
     void UpdatePath()
     {
-        if (seeker.IsDone())
+        if (seeker.IsDone() && !dying)
         {
             seeker.StartPath(rb.position, target.position, OnPathComplete);
         }
@@ -41,6 +44,23 @@ public class EnemyAI : MonoBehaviour
             path = p;
             currentWaypoint = 0;
         }
+    }
+
+    public void DealDamage(int damage)
+    {
+        health -= damage;
+
+        if (health <= 0)
+        {
+            dying = true;
+            Invoke("Death", 0.5f);
+        }
+    }
+
+    void Death()
+    {
+        Instantiate(deathEffect, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
     void FixedUpdate()
@@ -60,28 +80,31 @@ public class EnemyAI : MonoBehaviour
             reachedEndofPath = false;
         }
 
-        Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-        Vector2 force = dir * speed * Time.fixedDeltaTime;
-
-        //rb.MovePosition(rb.position + force);
-        rb.AddRelativeForce(force - rb.velocity);
-
-        //rb.velocity = new Vector2 (Mathf.Clamp(rb.velocity.x, -4f, 4f), Mathf.Clamp(rb.velocity.y, -4f, 4f));
-
-        float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
-
-        if(distance < nextWaypointDist)
+        if (!dying)
         {
-            currentWaypoint++;
-        }
+            Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+            Vector2 force = dir * speed * Time.fixedDeltaTime;
 
-        if (rb.velocity.x >= 0.01f)
-        {
-            sprite.flipX = true;
-        }
-        else if (rb.velocity.x <= 0.01f)
-        {
-            sprite.flipX = false;
+            //rb.MovePosition(rb.position + force);
+            rb.AddRelativeForce(force - rb.velocity);
+
+            //rb.velocity = new Vector2 (Mathf.Clamp(rb.velocity.x, -4f, 4f), Mathf.Clamp(rb.velocity.y, -4f, 4f));
+
+            float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+
+            if (distance < nextWaypointDist)
+            {
+                currentWaypoint++;
+            }
+
+            if (rb.velocity.x >= 0.01f)
+            {
+                sprite.flipX = true;
+            }
+            else if (rb.velocity.x <= 0.01f)
+            {
+                sprite.flipX = false;
+            }
         }
     }
 }

@@ -7,12 +7,14 @@ public class PlayerSwat : MonoBehaviour
     public Transform swatter;
     public PlayerMove playerMove;
     Animator swatAnim;
-
+    AudioSource swingSound;
+    public GameObject hitEffect;
     public bool swatting = false;
 
     void Start()
     {
         swatAnim = swatter.GetChild(0).GetComponent<Animator>();
+        swingSound = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -32,6 +34,9 @@ public class PlayerSwat : MonoBehaviour
     {
         swatting = true;
         swatAnim.SetTrigger("startSwat");
+
+        swingSound.pitch = Random.Range(0.9f, 1.1f);
+        swingSound.Play();
     }
 
     public void EndSwing()
@@ -64,6 +69,9 @@ public class PlayerSwat : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
+            collision.GetComponent<EnemyAI>().DealDamage(1);
+
+            Instantiate(hitEffect, collision.transform.position, Quaternion.identity);
             collision.GetComponent<Rigidbody2D>().velocity = (collision.transform.position - swatter.position).normalized * 20;
         }
     }

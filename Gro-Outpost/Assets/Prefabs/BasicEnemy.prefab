@@ -76,9 +76,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.11}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.35
 --- !u!114 &4149788749939393043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,7 +94,10 @@ MonoBehaviour:
   target: {fileID: 0}
   speed: 400
   nextWaypointDist: 2
+  health: 3
   sprite: {fileID: 7931508122573758157}
+  deathEffect: {fileID: 229744890021670578, guid: 1d9f385772a2cba44b5687696f772d87,
+    type: 3}
 --- !u!50 &1622053588
 Rigidbody2D:
   serializedVersion: 4
