@@ -8,9 +8,7 @@ public class PlayerMove : MonoBehaviour
 
     public Animator playerAnim;
     public PlayerSwat playerSwat;
-    public enum Dir { Up, Down, Left, Right };
-    [HideInInspector] public Dir faceDir;
-    Vector2 inputDir;
+    [HideInInspector]public Vector2 inputDir;
     Vector3 velocity;
 
     Rigidbody2D rb2D;
@@ -20,7 +18,6 @@ public class PlayerMove : MonoBehaviour
     {
         rb2D = GetComponent<Rigidbody2D>();
         collisionChecker = GetComponent<PlayerCollisions>();
-        faceDir = Dir.Down;
     }
 
     void Update()
@@ -51,7 +48,7 @@ public class PlayerMove : MonoBehaviour
             playerAnim.SetFloat("X", inputDir.x);
             playerAnim.SetFloat("Y", inputDir.y);
 
-            if (Mathf.Abs(inputDir.x) < 0.2f && inputDir.y > 0.8f)
+            /*if (Mathf.Abs(inputDir.x) < 0.2f && inputDir.y > 0.8f)
             {
                 faceDir = Dir.Up;
             }
@@ -66,7 +63,7 @@ public class PlayerMove : MonoBehaviour
             if (inputDir.x > 0.8f && Mathf.Abs(inputDir.y) < 0.2f)
             {
                 faceDir = Dir.Right;
-            }
+            }*/
         }
     }
 }

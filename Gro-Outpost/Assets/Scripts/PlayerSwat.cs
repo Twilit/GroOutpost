@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerSwat : MonoBehaviour
 {
     public Transform swatter;
-    public PlayerMove playerMove;
+    public Tools playerTools;
     Animator swatAnim;
     AudioSource swingSound;
     public GameObject hitEffect;
@@ -55,19 +55,19 @@ public class PlayerSwat : MonoBehaviour
 
     void SetSwatterDir()
     {
-        if (playerMove.faceDir == PlayerMove.Dir.Up)
+        if (playerTools.faceDir == Tools.Dir.Up)
         {
             swatter.eulerAngles = new Vector3(0, 0, 180);
         }
-        else if (playerMove.faceDir == PlayerMove.Dir.Down)
+        else if (playerTools.faceDir == Tools.Dir.Down)
         {
             swatter.eulerAngles = new Vector3(0, 0, 0);
         }
-        else if (playerMove.faceDir == PlayerMove.Dir.Left)
+        else if (playerTools.faceDir == Tools.Dir.Left)
         {
             swatter.eulerAngles = new Vector3(0, 0, 270);
         }
-        else if (playerMove.faceDir == PlayerMove.Dir.Right)
+        else if (playerTools.faceDir == Tools.Dir.Right)
         {
             swatter.eulerAngles = new Vector3(0, 0, 90);
         }
