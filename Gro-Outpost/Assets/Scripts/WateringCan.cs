@@ -7,6 +7,28 @@ public class WateringCan : MonoBehaviour
     public Tools playerTools;
     public Transform can;
     public bool watering;
+
+    public bool Watering
+    {
+        get
+        {
+            return watering;
+        }
+        set
+        {
+            if (watering == false && value == true)
+            {
+                canSound.Play();
+            }
+            else if (watering == true && value == false)
+            {
+                canSound.Stop();
+            }
+
+            watering = value;
+        }
+    }
+
     SpriteRenderer canSprite;
     Animator canAnim;
     AudioSource canSound;
@@ -15,6 +37,7 @@ public class WateringCan : MonoBehaviour
     {
         canSprite = GetComponent<SpriteRenderer>();
         canAnim = GetComponent<Animator>();
+        canSound = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -25,11 +48,11 @@ public class WateringCan : MonoBehaviour
 
             if (Input.GetMouseButton(0))
             {
-                watering = true;
+                Watering = true;
             }
             else
             {
-                watering = false;
+                Watering = false;
             }
         }
         else
