@@ -20,6 +20,7 @@ public class PlayerMove : MonoBehaviour
     {
         rb2D = GetComponent<Rigidbody2D>();
         collisionChecker = GetComponent<PlayerCollisions>();
+        faceDir = Dir.Down;
     }
 
     void Update()
@@ -49,23 +50,23 @@ public class PlayerMove : MonoBehaviour
         {
             playerAnim.SetFloat("X", inputDir.x);
             playerAnim.SetFloat("Y", inputDir.y);
-        }
 
-        if (Mathf.Abs(inputDir.x) < 0.2f && inputDir.y > 0.8f)
-        {
-            faceDir = Dir.Up;
-        }
-        if (Mathf.Abs(inputDir.x) < 0.2f && inputDir.y < -0.8f)
-        {
-            faceDir = Dir.Down;
-        }
-        if (inputDir.x < -0.8f && Mathf.Abs(inputDir.y) < 0.2f)
-        {
-            faceDir = Dir.Left;
-        }
-        if (inputDir.x > 0.8f && Mathf.Abs(inputDir.y) < 0.2f)
-        {
-            faceDir = Dir.Right;
+            if (Mathf.Abs(inputDir.x) < 0.2f && inputDir.y > 0.8f)
+            {
+                faceDir = Dir.Up;
+            }
+            if (Mathf.Abs(inputDir.x) < 0.2f && inputDir.y < -0.8f)
+            {
+                faceDir = Dir.Down;
+            }
+            if (inputDir.x < -0.8f && Mathf.Abs(inputDir.y) < 0.2f)
+            {
+                faceDir = Dir.Left;
+            }
+            if (inputDir.x > 0.8f && Mathf.Abs(inputDir.y) < 0.2f)
+            {
+                faceDir = Dir.Right;
+            }
         }
     }
 }
