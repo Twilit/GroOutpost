@@ -24,7 +24,7 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        if (!playerSwat.swatting)
+        if (!playerSwat.swatting && !playerSwat.startSwat)
         {
             inputDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         }
@@ -39,13 +39,17 @@ public class PlayerMove : MonoBehaviour
     void FixedUpdate()
     {
         HandleFaceDir(inputDir);
+        playerAnim.SetFloat("speed", Mathf.Abs(velocity.magnitude));
         rb2D.MovePosition(rb2D.transform.position + collisionChecker.CheckForCollision(velocity * Time.fixedDeltaTime));
     }
 
     void HandleFaceDir(Vector2 inputDir)
     {
-        playerAnim.SetFloat("X", inputDir.x);
-        playerAnim.SetFloat("Y", inputDir.y);
+        if (inputDir != Vector2.zero && !playerSwat.swatting && !playerSwat.startSwat)
+        {
+            playerAnim.SetFloat("X", inputDir.x);
+            playerAnim.SetFloat("Y", inputDir.y);
+        }
 
         if (Mathf.Abs(inputDir.x) < 0.2f && inputDir.y > 0.8f)
         {

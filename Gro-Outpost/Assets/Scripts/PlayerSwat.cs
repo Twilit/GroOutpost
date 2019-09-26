@@ -9,7 +9,9 @@ public class PlayerSwat : MonoBehaviour
     Animator swatAnim;
     AudioSource swingSound;
     public GameObject hitEffect;
+
     public bool swatting = false;
+    public bool startSwat = false;
 
     void Start()
     {
@@ -21,13 +23,19 @@ public class PlayerSwat : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && !swatting)
         {
-            SwingSwatter();
+            startSwat = true;
         }
     }
 
     private void FixedUpdate()
     {
         SetSwatterDir();
+
+        if (startSwat)
+        {
+            SwingSwatter();
+            startSwat = false;
+        }
     }
 
     void SwingSwatter()
