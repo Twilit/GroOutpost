@@ -39,11 +39,11 @@ public class Tools : MonoBehaviour
         selectedTool.GetComponent<Image>().sprite = unselectedSlot;
         selectedTool.GetComponent<RectTransform>().sizeDelta = new Vector2(100f, 100f);
 
-        if (Input.mouseScrollDelta.y < 0)
+        if (Input.mouseScrollDelta.y < 0 || Input.GetKeyDown(KeyCode.Q))
         {
             selectedToolIndex += 1;
         }
-        else if (Input.mouseScrollDelta.y > 0)
+        else if (Input.mouseScrollDelta.y > 0 || Input.GetKeyDown(KeyCode.E))
         {
             selectedToolIndex -= 1;
         }
