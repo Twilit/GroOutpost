@@ -7,7 +7,7 @@ public class PlayerMove : MonoBehaviour
     float runSpeed = 4f;
 
     public Animator playerAnim;
-    public PlayerSwat playerSwat;
+    public Tools playerTools;
     [HideInInspector]public Vector2 inputDir;
     Vector3 velocity;
 
@@ -22,7 +22,7 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        if (!playerSwat.swatting && !playerSwat.startSwat)
+        if (!playerTools.inAction)
         {
             inputDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         }
@@ -43,7 +43,7 @@ public class PlayerMove : MonoBehaviour
 
     void HandleFaceDir(Vector2 inputDir)
     {
-        if (inputDir != Vector2.zero && !playerSwat.swatting && !playerSwat.startSwat)
+        if (inputDir != Vector2.zero && !playerTools.inAction)
         {
             playerAnim.SetFloat("X", inputDir.x);
             playerAnim.SetFloat("Y", inputDir.y);

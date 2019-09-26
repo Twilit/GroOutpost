@@ -1,42 +1,105 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Tools : MonoBehaviour
 {
     public bool inAction;
 
     public enum Dir { Up, Down, Left, Right };
-    public Dir faceDir;
+    [HideInInspector]public Dir faceDir;
+
+    public GameObject[] toolSlots;
+    [HideInInspector]public GameObject selectedTool;
+    int selectedToolIndex;
+
     public PlayerMove playerMove;
+    public WateringCan wateringCan;
+    public PlayerSwat flySwatter;
+
+    public Sprite unselectedSlot;
+    public Sprite selectedSlot;
 
     void Start()
     {
         faceDir = Dir.Down;
+        SelectTool(0);
     }
 
     void Update()
     {
         HandleToolDirection();
+        SwitchTool();
+        CheckForAction();
+    }
+
+    void SwitchTool()
+    {
+        selectedTool.GetComponent<Image>().sprite = unselectedSlot;
+
+        if (Input.mouseScrollDelta.y < 0)
+        {
+            selectedToolIndex += 1;
+        }
+        else if (Input.mouseScrollDelta.y > 0)
+        {
+            selectedToolIndex -= 1;
+        }
+
+        if (selectedToolIndex > (toolSlots.Length - 1))
+        {
+            selectedToolIndex = 0;
+        }
+        else if (selectedToolIndex < 0)
+        {
+            selectedToolIndex = (toolSlots.Length - 1);
+        }
+
+        SelectTool(selectedToolIndex);
+    }
+
+    void SelectTool(int i)
+    {
+        selectedTool = toolSlots[i];
+        selectedToolIndex = i;
+
+        selectedTool.GetComponent<Image>().sprite = selectedSlot;
+    }
+
+    void CheckForAction()
+    {
+        if (wateringCan.watering || flySwatter.swatting)
+        {
+            inAction = true;
+        }
+        else
+        {
+            inAction = false;
+        }
     }
 
     void HandleToolDirection()
     {
-        if (Mathf.Abs(playerMove.inputDir.x) <= 0.7f && playerMove.inputDir.y >= 0.7f)
+        if (playerMove.inputDir.y > 0)
         {
             faceDir = Dir.Up;
+            return;
         }
-        else if (Mathf.Abs(playerMove.inputDir.x) <= 0.7f && playerMove.inputDir.y <= -0.7f)
+        else if (playerMove.inputDir.y < 0)
         {
             faceDir = Dir.Down;
+            return;
         }
-        else if (playerMove.inputDir.x <= -0.9f)
+        if (playerMove.inputDir.x < 0)
         {
             faceDir = Dir.Left;
+            return;
         }
-        else if (playerMove.inputDir.x >= 0.9f)
+        else if (playerMove.inputDir.x > 0)
         {
             faceDir = Dir.Right;
+            return;
         }
     }
 }

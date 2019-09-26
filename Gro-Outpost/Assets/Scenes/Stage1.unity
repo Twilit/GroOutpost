@@ -280,8 +280,8 @@ GameObject:
   - component: {fileID: 415018668}
   - component: {fileID: 415018667}
   m_Layer: 5
-  m_Name: Slot2
-  m_TagString: Untagged
+  m_Name: WateringCanSlot
+  m_TagString: CanSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1470,8 +1470,8 @@ GameObject:
   - component: {fileID: 877513482}
   - component: {fileID: 877513481}
   m_Layer: 5
-  m_Name: Slot1
-  m_TagString: Untagged
+  m_Name: SwatterSlot
+  m_TagString: SwatterSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4181,6 +4181,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1225282128287593034, guid: 26a15cea18cc66e48b153216a5089e84,
+        type: 3}
+      propertyPath: toolSlots.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1225282128287593034, guid: 26a15cea18cc66e48b153216a5089e84,
+        type: 3}
+      propertyPath: toolSlots.Array.data[0]
+      value: 
+      objectReference: {fileID: 877513479}
+    - target: {fileID: 1225282128287593034, guid: 26a15cea18cc66e48b153216a5089e84,
+        type: 3}
+      propertyPath: toolSlots.Array.data[1]
+      value: 
+      objectReference: {fileID: 415018665}
+    - target: {fileID: 1225282128287593034, guid: 26a15cea18cc66e48b153216a5089e84,
+        type: 3}
+      propertyPath: toolSlots.Array.data[2]
+      value: 
+      objectReference: {fileID: 1892764748}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26a15cea18cc66e48b153216a5089e84, type: 3}
 --- !u!1001 &7931508123149773082

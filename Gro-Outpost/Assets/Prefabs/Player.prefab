@@ -517,7 +517,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inAction: 0
   faceDir: 0
+  toolSlots: []
   playerMove: {fileID: 4626260521410367099}
+  wateringCan: {fileID: 3486295204487542486}
+  flySwatter: {fileID: 2441314388191807639}
+  unselectedSlot: {fileID: -1398605877437853181, guid: 139cd9b249b38b2408478156266cef65,
+    type: 3}
+  selectedSlot: {fileID: 1188512774844061707, guid: 139cd9b249b38b2408478156266cef65,
+    type: 3}
 --- !u!1 &4626260520220236770
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,7 +722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAnim: {fileID: 723884980339462176}
-  playerSwat: {fileID: 2441314388191807639}
+  playerTools: {fileID: 1225282128287593034}
   inputDir: {x: 0, y: 0}
 --- !u!114 &879988355
 MonoBehaviour:

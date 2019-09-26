@@ -21,9 +21,12 @@ public class PlayerSwat : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !swatting)
+        if (playerTools.selectedTool.tag == "SwatterSlot")
         {
-            startSwat = true;
+            if (Input.GetMouseButtonDown(0) && !swatting)
+            {
+                startSwat = true;
+            }
         }
     }
 

@@ -19,13 +19,22 @@ public class WateringCan : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (playerTools.selectedTool.tag == "CanSlot")
         {
-            watering = true;
+            canSprite.enabled = true;
+
+            if (Input.GetMouseButton(0))
+            {
+                watering = true;
+            }
+            else
+            {
+                watering = false;
+            }
         }
         else
         {
-            watering = false;
+            canSprite.enabled = false;
         }
     }
 
@@ -40,7 +49,7 @@ public class WateringCan : MonoBehaviour
     {
         if (playerTools.faceDir == Tools.Dir.Up)
         {
-            transform.localPosition = new Vector3(0.53f, 0.25f, 0f);
+            transform.localPosition = new Vector3(0.53f, 0.35f, 0f);
             canSprite.flipX = false;
             canSprite.sortingOrder = -5;
         }
