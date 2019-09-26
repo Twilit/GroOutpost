@@ -3,28 +3,19 @@ using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class LevelSelectChange : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-
-    public Text StartGame;
     public Text LevelSelect;
-    public Text Settings;
 
-
+    // Start is called before the first frame update
     public void OnPointerEnter(PointerEventData eventData)
     {
-        StartGame.color = Color.green;
-        Debug.Log("123");
         LevelSelect.color = Color.green;
-        Settings.color = Color.green;
-
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        StartGame.color = Color.white;
-        Debug.Log("456");
         LevelSelect.color = Color.white;
-        Settings.color = Color.white;
+
     }
 }
