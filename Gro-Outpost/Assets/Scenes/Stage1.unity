@@ -4059,7 +4059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4184,7 +4184,7 @@ PrefabInstance:
     - target: {fileID: 1225282128287593034, guid: 26a15cea18cc66e48b153216a5089e84,
         type: 3}
       propertyPath: toolSlots.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1225282128287593034, guid: 26a15cea18cc66e48b153216a5089e84,
         type: 3}

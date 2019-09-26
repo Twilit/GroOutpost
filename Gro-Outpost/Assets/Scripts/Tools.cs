@@ -37,6 +37,7 @@ public class Tools : MonoBehaviour
     void SwitchTool()
     {
         selectedTool.GetComponent<Image>().sprite = unselectedSlot;
+        selectedTool.GetComponent<RectTransform>().sizeDelta = new Vector2(100f, 100f);
 
         if (Input.mouseScrollDelta.y < 0)
         {
@@ -65,6 +66,7 @@ public class Tools : MonoBehaviour
         selectedToolIndex = i;
 
         selectedTool.GetComponent<Image>().sprite = selectedSlot;
+        selectedTool.GetComponent<RectTransform>().sizeDelta = new Vector2(112.5f, 112.5f);
     }
 
     void CheckForAction()
