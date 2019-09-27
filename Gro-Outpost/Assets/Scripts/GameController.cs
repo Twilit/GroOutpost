@@ -13,6 +13,11 @@ public class GameController : MonoBehaviour
 
     public GameObject winLoseScreen;
 
+    public AudioSource music;
+    public AudioClip bgMusic;
+    public AudioClip winFanfare;
+    public AudioClip loseFanfare;
+
     private void Awake()
     {
         currentGameState = GameState.Playing;
@@ -21,6 +26,10 @@ public class GameController : MonoBehaviour
     void Start()
     {
         winLoseScreen.SetActive(false);
+
+        music.Stop();
+        music.clip = bgMusic;
+        music.Play();
 
         for (int i = 0; i < pots.Length; i++)
         {
@@ -33,22 +42,26 @@ public class GameController : MonoBehaviour
 
     void CheckPlantGrowth()
     {
-        for (int i = 0; i < pots.Length; i++)
+        if (currentGameState == GameState.Playing)
         {
-            if (pots[i] == null)
-            {
-                EndGame(false);
-                return;
-            }
 
-            if (pots[i].currentPhase == GameController.PlantPhases.Flower)
+            for (int i = 0; i < pots.Length; i++)
             {
-                EndGame(true);
-            }
+                if (pots[i] == null)
+                {
+                    EndGame(false);
+                    return;
+                }
 
-            if (pots[i].changeReady)
-            {
-                ChangeToNextPhase(i);
+                if (pots[i].currentPhase == GameController.PlantPhases.Flower)
+                {
+                    EndGame(true);
+                }
+
+                if (pots[i].changeReady)
+                {
+                    ChangeToNextPhase(i);
+                }
             }
         }
     }
@@ -82,7 +95,24 @@ public class GameController : MonoBehaviour
 
     void EndGame(bool win)
     {
+        if (win)
+        {
+            music.Stop();
+            music.clip = winFanfare;
+            music.loop = false;
+            music.Play();
+        }
+        else
+        {
+            music.Stop();
+            music.clip = loseFanfare;
+            music.loop = false;
+            music.Play();
+        }
+
         winLoseScreen.SetActive(true);
         winLoseScreen.GetComponent<WinLoseDisplay>().DisplayResult(win);
+
+        Time.timeScale = 0;
     }
 }
