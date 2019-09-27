@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - SwatterSlot
   - CanSlot
+  - Water
+  - Plant
   layers:
   - Default
   - TransparentFX
