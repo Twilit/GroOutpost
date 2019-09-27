@@ -25,13 +25,14 @@ public class EnemyAI : MonoBehaviour
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        target = GameObject.FindGameObjectWithTag("Plant").transform;
 
         InvokeRepeating("UpdatePath", 0f, 0.5f);
     }
 
     void UpdatePath()
     {
-        if (seeker.IsDone() && !dying)
+        if (seeker.IsDone() && !dying && target != null)
         {
             seeker.StartPath(rb.position, target.position, OnPathComplete);
         }
