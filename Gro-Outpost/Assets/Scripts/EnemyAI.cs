@@ -25,7 +25,15 @@ public class EnemyAI : MonoBehaviour
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
-        target = GameObject.FindGameObjectWithTag("Plant").transform;
+
+        try
+        {
+            target = GameObject.FindGameObjectWithTag("Plant").transform;
+        }
+        catch
+        {
+            target = null;
+        }
 
         InvokeRepeating("UpdatePath", 0f, 0.5f);
     }

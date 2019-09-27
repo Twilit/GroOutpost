@@ -5,12 +5,23 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public enum PlantPhases { Seed, Seedling, Bulb, Flower };
+    enum GameState { Playing, Win, Lose };
+    GameState currentGameState;
 
     public PlantPot[] pots;
     public Sprite[] plantPhaseSprites;
 
+    public GameObject winLoseScreen;
+
+    private void Awake()
+    {
+        currentGameState = GameState.Playing;
+    }
+
     void Start()
     {
+        winLoseScreen.SetActive(false);
+
         for (int i = 0; i < pots.Length; i++)
         {
             pots[i].ChangeSprite(plantPhaseSprites[0]);
@@ -20,15 +31,21 @@ public class GameController : MonoBehaviour
         InvokeRepeating("CheckPlantGrowth", 0f, 0.5f);
     }
 
-    void Update()
-    {
-
-    }
-
     void CheckPlantGrowth()
     {
         for (int i = 0; i < pots.Length; i++)
         {
+            if (pots[i] == null)
+            {
+                EndGame(false);
+                return;
+            }
+
+            if (pots[i].currentPhase == GameController.PlantPhases.Flower)
+            {
+                EndGame(true);
+            }
+
             if (pots[i].changeReady)
             {
                 ChangeToNextPhase(i);
@@ -61,5 +78,11 @@ public class GameController : MonoBehaviour
             pots[i].plantSounds.clip = pots[i].flowerSound;
             pots[i].plantSounds.Play();
         }
+    }
+
+    void EndGame(bool win)
+    {
+        winLoseScreen.SetActive(true);
+        winLoseScreen.GetComponent<WinLoseDisplay>().DisplayResult(win);
     }
 }
