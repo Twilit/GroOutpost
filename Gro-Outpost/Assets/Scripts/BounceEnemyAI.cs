@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-public class EnemyAI : MonoBehaviour
+public class BounceEnemyAI : MonoBehaviour
 {
     public Transform target;
     public float speed;
-    public float nextWaypointDist = 1.2f;
-    public int health = 3;
+    public float nextWaypointDist = 2f;
+    public int health = 2;
 
     public SpriteRenderer sprite;
     public GameObject deathEffect;
@@ -49,6 +49,8 @@ public class EnemyAI : MonoBehaviour
     virtual public void DealDamage(int damage)
     {
         health -= damage;
+
+        sprite.color = Color.red;
 
         if (health <= 0)
         {
