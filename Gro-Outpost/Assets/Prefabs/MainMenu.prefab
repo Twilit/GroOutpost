@@ -120,9 +120,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 7e7cd3ef0a2973243a85d517aee8538c, type: 3}
-        m_MethodName: 
-        m_Mode: 5
+      - m_Target: {fileID: 7222262440804670727, guid: 3775b22dca61d0d48b414212da442ed9,
+          type: 3}
+        m_MethodName: GotoMainMainMenu
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
