@@ -260,6 +260,7 @@ MonoBehaviour:
   plantSounds: {fileID: 0}
   growSound: {fileID: 8300000, guid: c0034b85327878d4dae86c48e4e14c66, type: 3}
   flowerSound: {fileID: 8300000, guid: b360db23e657aba4794cc34f730495ea, type: 3}
+  damagedSound: {fileID: 8300000, guid: 0401e31f644e56b46a8b038d0d6626b2, type: 3}
 --- !u!82 &6144952031373648579
 AudioSource:
   m_ObjectHideFlags: 0

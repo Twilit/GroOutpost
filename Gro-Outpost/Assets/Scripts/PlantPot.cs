@@ -23,6 +23,7 @@ public class PlantPot : MonoBehaviour
     public AudioSource plantSounds;
     public AudioClip growSound;
     public AudioClip flowerSound;
+    public AudioClip damagedSound;
 
     void Start()
     {
@@ -99,6 +100,10 @@ public class PlantPot : MonoBehaviour
         else if (collision.tag == "Enemy")
         {
             Destroy(collision.gameObject);
+
+            plantSounds.clip = damagedSound;
+            plantSounds.Play();
+
             DamagePlant(1);
         }
     }

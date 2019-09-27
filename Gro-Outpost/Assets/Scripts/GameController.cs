@@ -20,6 +20,8 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 1;
+        music.loop = true;
         currentGameState = GameState.Playing;
     }
 
