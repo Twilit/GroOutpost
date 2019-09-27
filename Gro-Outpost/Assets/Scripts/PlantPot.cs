@@ -7,6 +7,11 @@ public class PlantPot : MonoBehaviour
 {
     public GameController.PlantPhases currentPhase;
     public SpriteRenderer plantSprite;
+    public SpriteRenderer cracks;
+    public Sprite crack1;
+    public Sprite crack2;
+
+    int health = 3;
 
     float growthTimer = 0f;
     bool needWater = false;
@@ -21,8 +26,10 @@ public class PlantPot : MonoBehaviour
 
     void Start()
     {
+        health = 3;
         growthTimer = 0f;
         waterText.text = "";
+        cracks.enabled = false;
         plantSounds = GetComponent<AudioSource>();
         StartCoroutine("NeedWaterIndicator");
     }
@@ -46,7 +53,7 @@ public class PlantPot : MonoBehaviour
     {
         if (currentPhase != GameController.PlantPhases.Flower && !changeReady)
         {
-            if (growthTimer < 5f)
+            if (growthTimer < 15f)
             {
                 growthTimer += Time.deltaTime;
             }
@@ -88,6 +95,31 @@ public class PlantPot : MonoBehaviour
         {
             needWater = false;
             changeReady = true;
+        }
+        else if (collision.tag == "Enemy")
+        {
+            Destroy(collision.gameObject);
+            DamagePlant(1);
+        }
+    }
+
+    void DamagePlant(int damage)
+    {
+        health -= damage;
+
+        if (health == 2)
+        {
+            cracks.enabled = true;
+            cracks.sprite = crack1;
+        }
+        else if (health == 1)
+        {
+            cracks.enabled = true;
+            cracks.sprite = crack2;
+        }
+        else
+        {
+            Destroy(this.gameObject);
         }
     }
 }

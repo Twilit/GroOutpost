@@ -73,25 +73,25 @@ public class WateringCan : MonoBehaviour
         if (playerTools.faceDir == Tools.Dir.Up)
         {
             transform.localPosition = new Vector3(0.53f, 0.35f, 0f);
-            canSprite.flipX = false;
+            transform.localScale = new Vector3(1f, 1f, 1f);
             canSprite.sortingOrder = -5;
         }
         else if (playerTools.faceDir == Tools.Dir.Down)
         {
             transform.localPosition = new Vector3 (0.53f, -0.76f, 0f);
-            canSprite.flipX = false;
+            transform.localScale = new Vector3(1f, 1f, 1f);
             canSprite.sortingOrder = 5;
         }
         else if (playerTools.faceDir == Tools.Dir.Left)
         {
             transform.localPosition = new Vector3(0f, -0.25f, 0f);
-            canSprite.flipX = false;
+            transform.localScale = new Vector3(1f, 1f, 1f);
             canSprite.sortingOrder = -5;
         }
         else if (playerTools.faceDir == Tools.Dir.Right)
         {
             transform.localPosition = new Vector3(0f, -0.25f, 0f);
-            canSprite.flipX = true;
+            transform.localScale = new Vector3(-1f, 1f, 1f);
             canSprite.sortingOrder = -5;
         }
     }
