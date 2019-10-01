@@ -76,9 +76,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 450
+  speed: 500
   nextWaypointDist: 2
-  health: 6
+  health: 4
   sprite: {fileID: 1976223025233479789}
   deathEffect: {fileID: 229744890021670578, guid: 1d9f385772a2cba44b5687696f772d87,
     type: 3}
@@ -94,8 +94,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5
-  m_LinearDrag: 2
+  m_Mass: 3
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}

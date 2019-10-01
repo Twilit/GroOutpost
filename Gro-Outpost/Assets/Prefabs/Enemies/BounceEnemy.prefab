@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 200
+  speed: 150
   nextWaypointDist: 2
   health: 2
   sprite: {fileID: 1037807283061867191}

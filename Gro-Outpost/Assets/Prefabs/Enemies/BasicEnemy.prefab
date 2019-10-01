@@ -92,9 +92,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 430
+  speed: 450
   nextWaypointDist: 2
-  health: 3
+  health: 1
   sprite: {fileID: 7931508122573758157}
   deathEffect: {fileID: 229744890021670578, guid: 1d9f385772a2cba44b5687696f772d87,
     type: 3}

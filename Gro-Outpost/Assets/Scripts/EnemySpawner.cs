@@ -6,12 +6,13 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject[] enemyTypes;
 
+    public float initialEnemySpawnClock;
     float enemySpawnClock = 0f;
     public float enemySpawnTime = 6f;
 
     void Start()
     {
-        enemySpawnClock = 4;
+        enemySpawnClock = initialEnemySpawnClock;
     }
 
     void Update()
@@ -27,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
-            Instantiate(enemyTypes[Random.Range(0, enemyTypes.Length - 1)], transform.position, Quaternion.identity);
+            Instantiate(enemyTypes[Random.Range(0, enemyTypes.Length)], transform.position, Quaternion.identity);
             enemySpawnClock = Random.Range(0, 3);
         }
     }
